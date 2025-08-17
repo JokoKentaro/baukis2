@@ -7,3 +7,8 @@ StaffMember.create!(
   password: "password",
   start_date: Date.today
 )
+
+Administrator.create!(
+  email: "hanako@example.com",
+  password: "foobar"
+)
