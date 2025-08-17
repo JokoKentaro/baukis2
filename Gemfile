@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.4'
+ruby '3.1.2'
 
 gem 'concurrent-ruby', '1.3.4'
 gem 'ffi', '= 1.16.3' # <= この行を追加
@@ -10,7 +10,7 @@ gem 'rails', '~> 6.0.6', '>= 6.0.6.1'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 gem 'sass-rails', '>= 6'
-gem 'webpacker', '~> 4.0'
+gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 
