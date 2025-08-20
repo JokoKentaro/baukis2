@@ -1,14 +1,9 @@
-StaffMember.create!(
-  email: "taro@example.com",
-  family_name: "山田",
-  given_name: "太郎",
-  family_name_kana: "ヤマダ",
-  given_name_kana: "タロウ",
-  password: "password",
-  start_date: Date.today
-)
+table_names = %w(staff_members administrators)
 
-Administrator.create!(
-  email: "hanako@example.com",
-  password: "foobar"
-)
+table_names.each do |table_name|
+  path = Rails.root.join("db", "seeds", Rails.env, "#{table_name}.rb")
+  if File.exist?(path)
+    puts "Greating #{table_name}..."
+    require(path)
+  end
+end
