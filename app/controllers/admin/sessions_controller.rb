@@ -14,7 +14,7 @@ class Admin::SessionsController < Admin::Base
       admin = Administrator.find_by("LOWER(email) = ?", @form.email.downcase)
     end
     if Admin::Authenticator.new(admin).authenticate(@form.password)
-      session[:admin_id] = admin.id
+      session[:administrator_id] = admin.id
       flash[:notice] = "ログインしました。"
       redirect_to :admin_root        
     else
@@ -24,7 +24,7 @@ class Admin::SessionsController < Admin::Base
   end
 
   def destroy
-    session.delete(:admin_id)
+    session.delete(:administrator_id)
     flash[:notice] = "ログアウトしました。"
     redirect_to :admin_root
   end
