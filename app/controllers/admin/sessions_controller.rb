@@ -1,4 +1,6 @@
 class Admin::SessionsController < Admin::Base
+  skip_before_action :authorize
+
   def new
     if current_administrator
       redirect_to :admin_root
@@ -15,6 +17,7 @@ class Admin::SessionsController < Admin::Base
     end
     if Admin::Authenticator.new(admin).authenticate(@form.password)
       session[:administrator_id] = admin.id
+      session[:last_access_time] = Time.current
       flash[:notice] = "ログインしました。"
       redirect_to :admin_root        
     else
