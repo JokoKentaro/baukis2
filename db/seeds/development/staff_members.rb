@@ -23,12 +23,12 @@ given_names = %w{
   梅子:ウメコ:umeko
 }
 
-20.times do |n|
+30.times do |n|
   fn = family_names[n % 4].split(":")
   gn = given_names[n % 5].split(":")
 
   StaffMember.create!(
-    email: "#{fn[2]}.#{gn[2]}@example.com",
+    email: "#{fn[2]}.#{gn[2]}#{n}@example.com",
     family_name: fn[0],
     given_name: gn[0],
     family_name_kana: fn[1],
