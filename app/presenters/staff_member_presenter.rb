@@ -1,5 +1,13 @@
 class StaffMemberPresenter < ModelPresenter
-  delegate :suspended?, to: :object
+  delegate :family_name, :given_name, :family_name_kana, :given_name_kana, :suspended?, to: :object
+
+  def full_name
+    "#{family_name} #{given_name}"
+  end
+
+  def full_name_kana
+    "#{family_name_kana} #{given_name_kana}"
+  end
 
   # 職員の停止フラグのOn/Offを表現する記号を返す
   # On: BALLOT_BOX_WITH_CHECK (U+2611)
