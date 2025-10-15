@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_09_28_040421) do
+ActiveRecord::Schema.define(version: 2025_10_08_051452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.string "type", null: false
+    t.string "postal_code", null: false
+    t.string "prefecture", null: false
+    t.string "city", null: false
+    t.string "address1", null: false
+    t.string "address2", null: false
+    t.string "company_name", default: "", null: false
+    t.string "division_name", default: "", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_addresses_on_customer_id"
+    t.index ["type", "customer_id"], name: "index_addresses_on_type_and_customer_id", unique: true
+  end
 
   create_table "administrators", force: :cascade do |t|
     t.string "email", null: false
@@ -30,10 +46,9 @@ ActiveRecord::Schema.define(version: 2025_09_28_040421) do
     t.string "given_name", null: false
     t.string "family_name_kana", null: false
     t.string "given_name_kana", null: false
+    t.string "gender"
+    t.date "birthday"
     t.string "hashed_password"
-    t.date "start_date", null: false
-    t.date "end_date"
-    t.boolean "suspended", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index "lower((email)::text)", name: "index_customers_on_LOWER_email", unique: true
@@ -64,5 +79,6 @@ ActiveRecord::Schema.define(version: 2025_09_28_040421) do
     t.index ["family_name_kana", "given_name_kana"], name: "index_staff_members_on_family_name_kana_and_given_name_kana"
   end
 
+  add_foreign_key "addresses", "customers"
   add_foreign_key "staff_events", "staff_members"
 end

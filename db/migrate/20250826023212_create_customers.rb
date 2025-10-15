@@ -6,10 +6,9 @@ class CreateCustomers < ActiveRecord::Migration[6.0]
       t.string :given_name, null: false
       t.string :family_name_kana, null: false
       t.string :given_name_kana, null: false
+      t.string :gender
+      t.date :birthday
       t.string :hashed_password
-      t.date :start_date, null: false
-      t.date :end_date
-      t.boolean :suspended, null: false, default: false
 
       t.timestamps
     end
