@@ -73,7 +73,7 @@ feature "職員による顧客管理" do
 
     fill_in "生年月日", with: "2100-01-01"
     within("fieldset#home-address-fields") do
-      fill_in "郵便番号", with "XYZ"
+      fill_in "郵便番号", with: "XYZ"
     end
     click_button "更新"
 
