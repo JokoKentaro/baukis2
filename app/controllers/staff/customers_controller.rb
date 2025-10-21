@@ -34,7 +34,8 @@ class Staff::CustomersController < Staff::Base
       flash.notice = "顧客情報を更新しました。"
       redirect_to action: "index"
     else
-      flash.now.alert  "入力内容に誤りがあります。"
+      flash.now.alert = "入力内容に誤りがあります。"
+      render action: "edit"
     end
   end
 
